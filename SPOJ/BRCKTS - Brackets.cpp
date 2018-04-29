@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -33,6 +33,19 @@ int dy[] = {1 , -1 , 0 , 0 , 1 ,-1 ,  1 , -1 } ;
 زي السؤال اللي جبتيه كيف بس تعدلي تروحي تشيكي على الـ string انه زابط او لا وانتي بتعدلي
 فلما يسألك زابط او لا انتي بتكون حاسبي الجواب من اخر تعديل
 
+
+
+10
+()(()()(()
+7
+3
+0
+2
+9
+0
+8
+0
+
 */
 class SegmentTree
 {
@@ -59,7 +72,7 @@ public :
 
 	void insert(int s, int e , int p = 1 ) {
 
-		
+
 		if (s==e)
 		{
 			if ( b[s] == '(' ) {
@@ -76,19 +89,19 @@ public :
 			insert(s,(s+e)/2,2*p);
 			insert((s+e)/2+1,e,2*p+1 );
 
-		//	a[p].first  = a[p*2].first + a[p*2+1].first - min(a[p*2].first + a[p*2+1].first , a[p*2].second + a[p*2+1].second ); 
-		//	a[p].second = a[p*2].second + a[p*2+1].second - min(a[p*2].first + a[p*2+1].first , a[p*2].second + a[p*2+1].second ); 
+			//	a[p].first  = a[p*2].first + a[p*2+1].first - min(a[p*2].first + a[p*2+1].first , a[p*2].second + a[p*2+1].second ); 
+			//	a[p].second = a[p*2].second + a[p*2+1].second - min(a[p*2].first + a[p*2+1].first , a[p*2].second + a[p*2+1].second ); 
 
-			
+
 			a[p].first  = a[p*2].first + a[p*2+1].first ;
 			a[p].second = a[p*2].second + a[p*2+1].second ;
-		
+
 			int x = min ( a[p*2].second  ,a[p*2+1].first) ; 
 			a[p].second  = a[p].second  - x ;
 			a[p].first   = a[p].first -x ;
 		}
 
-	//	cout << s << " " << e << " " << p << " " << a[p].first << " " << a[p].second << endl;
+		//	cout << s << " " << e << " " << p << " " << a[p].first << " " << a[p].second << endl;
 	}
 
 
@@ -124,18 +137,20 @@ public :
 	}
 
 	void display(int s , int e , int p = 1 ) {
-		if ( s == e ) 
+		if ( s == e ) {
+			cout << p << " " << s << " " << e << " " << a[p].first << " " << a[p].second << endl; 
 			return ; 
-			display (s, (s+e)/2 , 2*p ) ; 
-			display ((s+e)/2+1 , e , 2*p+1 ) ; 
-		
-	//	cout << p << " " << s << " " << e << " " << a[p].first << " " << a[p].second << endl; 
-		
+		}
+		display (s, (s+e)/2 , 2*p ) ; 
+		display ((s+e)/2+1 , e , 2*p+1 ) ; 
+
+		cout << p << " " << s << " " << e << " " << a[p].first << " " << a[p].second << endl; 
+
 	}
 
 
 	bool check(int p=1) {
-		//cout <<  a[p].first << " " <<  a[p].second  <<endl;
+		cout <<  a[p].first << " " <<  a[p].second  <<endl;
 		if ( a[p].first == a[p].second  && a[p].second == 0 && a[p].first == 0 ) 
 			return true;
 		return false;
