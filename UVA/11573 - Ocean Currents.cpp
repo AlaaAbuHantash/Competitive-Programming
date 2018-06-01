@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define mp make_pair
-char dist[1001][1001];
+int dist[1001][1001];
 int dx[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 int dy[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 pair<int, int> v[1001][1001];
